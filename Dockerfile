@@ -3,14 +3,29 @@ FROM selenium/standalone-chrome
 
 MAINTAINER Prigornev Ivan <v1ar31@gmail.com>
 
-# install nodejs and npm
-RUN apt-get update
-RUN apt-get install nodejs
-RUN apt-get install npm
+# install tools
+RUN sudo apt-get update
+
+RUN sudo apt-get install -y nodejs npm
+RUN sudo apt-get install -y wget tar
 
 # install phantomjs
-RUN mkdir /tmp/phantomjs \
-    && curl -L https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 \
-           | tar -xj --strip-components=1 -C /tmp/phantomjs \
-    && mv /tmp/phantomjs/bin/phantomjs /usr/bin \
-    && rm -rf /tmp/phantomjs
+RUN sudo apt-get install -y build-essential chrpath libssl-dev libxft-dev
+RUN sudo apt-get install -y libfreetype6 libfreetype6-dev
+RUN sudo apt-get install -y libfontconfig1 libfontconfig1-dev
+
+ENV PHANTOM_JS phantomjs-2.1.1-linux-x86_64
+
+RUN sudo wget https://bitbucket.org/ariya/phantomjs/downloads/$PHANTOM_JS.tar.bz2
+RUN sudo tar xvjf $PHANTOM_JS.tar.bz2
+
+RUN sudo mv $PHANTOM_JS /usr/local/share
+RUN sudo ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin
+
+RUN sudo rm -rf $PHANTOM_JS
+RUN sudo rm $PHANTOM_JS.tar.bz2
+
+# clear image
+RUN sudo apt-get purge -y wget
+RUN sudo apt-get autoremove -y
+RUN sudo apt-get clean
