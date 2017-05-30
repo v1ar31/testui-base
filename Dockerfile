@@ -4,6 +4,18 @@ FROM selenium/node-chrome
 MAINTAINER Prigornev Ivan <v1ar31@gmail.com>
 
 #========================
+# NodeJS
+#========================
+
+USER root
+
+RUN apt-get update
+RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -
+RUN apt-get -qqy install nodejs npm
+
+USER seluser
+
+#========================
 # PhantomJS
 #========================
 # RUN sudo apt-get install -y build-essential chrpath libssl-dev libxft-dev
