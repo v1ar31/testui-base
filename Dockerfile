@@ -6,14 +6,13 @@ MAINTAINER Prigornev Ivan <v1ar31@gmail.com>
 #========================
 # NodeJS
 #========================
+RUN sudo apt-get update
+RUN sudo apt-get install curl -y
 
-USER root
+RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+RUN sudo apt-get install -y nodejs
 
-RUN apt-get update
-RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -
-RUN apt-get -qqy install nodejs npm
-
-USER seluser
+RUN node -v
 
 #========================
 # PhantomJS
