@@ -3,16 +3,16 @@ FROM selenium/node-chrome
 
 MAINTAINER Prigornev Ivan <v1ar31@gmail.com>
 
+USER root
+
 #========================
 # NodeJS
 #========================
-RUN sudo apt-get update
-RUN sudo apt-get install curl -y
+RUN apt-get update
+RUN apt-get install curl -y
 
 RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-RUN sudo apt-get install -y nodejs
-
-RUN node -v
+RUN apt-get install -y nodejs
 
 #========================
 # PhantomJS
@@ -20,8 +20,6 @@ RUN node -v
 # RUN sudo apt-get install -y build-essential chrpath libssl-dev libxft-dev
 # RUN sudo apt-get install -y libfreetype6 libfreetype6-dev
 # RUN sudo apt-get install -y libfontconfig1 libfontconfig1-dev
-
-USER root
 
 ENV PHANTOM_JS phantomjs-2.1.1-linux-x86_64
 
@@ -34,11 +32,9 @@ RUN ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin
 RUN rm -rf $PHANTOM_JS
 RUN rm $PHANTOM_JS.tar.bz2
 
-USER seluser
-
 #========================
 # Clear Image
 #========================
 # RUN sudo apt-get purge -y wget
-RUN sudo apt-get autoremove -y
-RUN sudo apt-get clean
+RUN apt-get autoremove -y
+RUN apt-get clean
