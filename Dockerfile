@@ -31,7 +31,7 @@ RUN rm $PHANTOM_JS.tar.bz2
 #========================
 # Virtual Display
 #========================
-RUN Xvfb :1 -screen 5 1024x768x8 & export DISPLAY=:1.5
+RUN echo 'Xvfb :1 -screen 5 1024x768x8 & export DISPLAY=:1.5' >> ~/.bashrc
 
 #========================
 # Clear Image
