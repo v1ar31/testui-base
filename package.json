@@ -1,0 +1,19 @@
+{
+  "name": "testui-base",
+  "version": "1.0.0",
+  "description": "Base Docker image that contains selenium-server, phantomjs, chromedriver.\r As well node, jar.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/v1ar31/testui-base.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/v1ar31/testui-base/issues"
+  },
+  "homepage": "https://github.com/v1ar31/testui-base#readme"
+}
